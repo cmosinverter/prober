@@ -179,7 +179,7 @@ if __name__ == "__main__":
     device_name = tk.StringVar()
     search_str_var = tk.StringVar()
 
-    def submit_1():
+    def submit(type_):
         # First select a folder path to save the processed .csv file
         folder_path = filedialog.askdirectory()
         print(f'Save file to {folder_path}')
@@ -187,17 +187,20 @@ if __name__ == "__main__":
         end = end_month_var.get()
         device = device_name.get()
         search_str = search_str_var.get()
-        main_1(start, end, device, search_str, folder_path)
+        if type_ == '.dat':
+            main_1(start, end, device, search_str, folder_path)
+        if type_ == '.log':
+            main_2(start, end, device, search_str, folder_path)
     
-    def submit_2():
-        # First select a folder path to save the processed .csv file
-        folder_path = filedialog.askdirectory()
-        print(f'Save file to {folder_path}')
-        start = start_month_var.get()
-        end = end_month_var.get()
-        device = device_name.get()
-        search_str = search_str_var.get()
-        main_2(start, end, device, search_str, folder_path)
+    # def submit_2():
+    #     # First select a folder path to save the processed .csv file
+    #     folder_path = filedialog.askdirectory()
+    #     print(f'Save file to {folder_path}')
+    #     start = start_month_var.get()
+    #     end = end_month_var.get()
+    #     device = device_name.get()
+    #     search_str = search_str_var.get()
+    #     main_2(start, end, device, search_str, folder_path)
 
     # creating a label for
     # name using widget Label
@@ -209,12 +212,16 @@ if __name__ == "__main__":
     device_entry=tk.Entry(window, textvariable = device_name, font = ('calibre',10,'normal'))
     search_label = tk.Label(window, text = 'Search String/Code', font = ('calibre',10,'bold'))
     search_entry=tk.Entry(window, textvariable = search_str_var, font = ('calibre',10,'normal'))
+    option_label = tk.Label(window, text = 'File Option', font=('calibre',10, 'bold'))
+    value = tk.StringVar()
 
-
+    value.set('.log')
+    om = tk.OptionMenu(window, value, '.log', '.dat')
     # creating a button using the widget
     # Button that will call the submit function
-    dat_btn = tk.Button(window,text = 'Submit (.dat)', command = submit_1)
-    log_btn = tk.Button(window,text = 'Submit (.log)', command = submit_2)
+    # dat_btn = tk.Button(window,text = 'Submit (.dat)', command = submit_1)
+    # log_btn = tk.Button(window,text = 'Submit (.log)', command = submit_2)
+    sbm_btn = tk.Button(window,text = 'Submit', command = lambda : submit(value.get()))
     # placing the label and entry in
     # the required position using grid
     # method
@@ -226,8 +233,9 @@ if __name__ == "__main__":
     device_entry.grid(row=2,column=1)
     search_label.grid(row=3,column=0)
     search_entry.grid(row=3,column=1)
-    dat_btn.grid(row=4,column=0)
-    log_btn.grid(row=4,column=1)
+    om.grid(row=4,column=1)
+    option_label.grid(row=4,column=0)
+    sbm_btn.grid(row=5,columnspan =2)
     # performing an infinite loop
     # for the window to display
     window.mainloop()
