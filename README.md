@@ -1,7 +1,6 @@
 <!-- 底下標籤來源參考寫法可至：https://github.com/Envoy-VC/awesome-badges#github-stats -->
 
 
-**ps. 底下範本不是絕對，你可以依照自己需求斟酌增加或刪除。**
 
 # Prober Log & Dat File 搜尋程式
 
@@ -25,7 +24,7 @@
 
 以下將會引導你如何安裝此專案到你的電腦上。
 
-Python 版本建議為：`3.11.4` ...
+Python 版本建議為：`3.11.4`
 
 ### 取得專案
 
@@ -40,7 +39,7 @@ cd prober
 ```
 
 ### 安裝套件
-
+> 建議使用 miniconda 管理環境
 ```bash
 pip install -r requirements.txt
 ```
@@ -56,4 +55,3 @@ python main.py
 你可以透過以下方式與我聯絡
 
 - [E-mail](kevin95120@gmail.com)
-...
